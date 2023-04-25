@@ -11,6 +11,7 @@ def index():
     return render_template('index.html')
 
 
+
 def app():
     return render_template('app.html')
 
@@ -50,4 +51,6 @@ def genderapp():
         
         return render_template('gender.html',fileupload=True,report=report) # POST REQUEST
             
-    return render_template('gender.html',fileupload=False) # GET REQUEST 
+    
+    
+    return render_template('gender.html',fileupload=False) # GET REQUEST

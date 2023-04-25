@@ -2,12 +2,12 @@ import numpy as np
 import sklearn
 import pickle
 import cv2
-haar = cv2.CascadeClassifier('./model/haarcascade_frontalface_default - Copy.xml') #cascase classifier
-model_svm = pickle.load(open('./model/model_svm.pickle',mode ='rb')) # machine learning model(svm)
-pca_models = pickle.load(open('./model/pca.dict.pickle', mode = 'rb')) # pca dictionary
-model_pca = pca_models['pca'] # PCA model
-mean_face_arr = pca_models['mean_face'] # Mean Face
-   
+
+
+# Load all models
+haar = cv2.CascadeClassifier('./model/haarcascade_frontalface_default.xml') # cascade classifier
+model_svm =  pickle.load(open('./model/model_svm.pickle',mode='rb')) # machine learning model (SVM)
+pca_models = pickle.load(open('./model/pca_dict.pickle',mode='rb')) # pca dictionary
 model_pca = pca_models['pca'] # PCA model
 mean_face_arr = pca_models['mean_face'] # Mean Face
 
@@ -21,7 +21,7 @@ def faceRecognitionPipeline(filename,path=True):
     # step-02: convert into gray scale
     gray =  cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) 
     # step-03: crop the face (using haar cascase classifier)
-    faces = haar.detectMultiScale(gray,1.5,5)
+    faces = haar.detectMultiScale(gray,1.5,3)
     predictions = []
     for x,y,w,h in faces:
         #cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
